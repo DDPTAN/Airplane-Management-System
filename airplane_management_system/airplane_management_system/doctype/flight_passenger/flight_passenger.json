@@ -43,7 +43,7 @@
  "modified": "2024-06-20 00:40:46.704325",
  "modified_by": "Administrator",
  "module": "Airplane Management System",
- "name": "Flight Passanger",
+ "name": "Flight Passenger",
  "naming_rule": "Autoincrement",
  "owner": "Administrator",
  "permissions": [
