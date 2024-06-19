@@ -1,0 +1,139 @@
+Project Airplane_Management_System {
+  database_type: 'PostgreSQL'
+  Note: '''
+    # Airplane Management System Database
+    
+    This is a database schema for an airplane management system application.
+    
+    ## Tables
+    
+    - `Airline`: Contains information about airlines.
+    - `Airport`: Stores details about airports.
+    - `Airplane`: Records details about airplanes operated by airlines.
+    - `AirplaneFlight`: Represents flights operated by airplanes.
+    - `FlightPassenger`: Stores passenger details for each flight.
+    - `AirplaneTicket`: Represents tickets booked by passengers.
+    - `AirplaneTicketAddOnType`: Tracks additional services booked along with tickets.
+    - `AirportShop`: Manages shops leased at airports.
+    - `AirportShopRentPayment`: Records rent payments for leased shops.
+    - `GlobalConfiguration`: Stores global configurations for the system.
+    - `AirplaneFlightCrew`: Records crew members assigned to flights.
+  '''
+}
+
+Table Airline {
+  Name varchar [pk, not null]
+  Website varchar
+  FoundingYear int [not null, note: 'Non-negative']
+  CustomerCareNumber varchar [not null]
+  Headquarters varchar [not null]
+}
+
+Table Airport {
+  Name varchar [pk, not null]
+  Code varchar [not null, unique]
+  City varchar
+  Country varchar
+}
+
+Table Airplane {
+  Name varchar [pk, not null]
+  AirlineName varchar [not null]
+  Capacity int [not null]
+  InitialAuditCompleted bool
+
+}
+
+Table AirplaneFlight {
+  Name varchar [pk, not null]
+  AirplaneName varchar [not null]
+  DateOfDeparture date [not null]
+  TimeOfDeparture time [not null]
+  Duration interval [not null]
+  Status varchar [default: 'Scheduled']
+  SourceAirportName varchar [not null]
+  DestinationAirportName varchar [not null]
+}
+
+Table FlightPassenger {
+  ID int [pk, increment]
+  FirstName varchar [not null]
+  LastName varchar [not null]
+  FullName varchar [not null]
+  PassportNumber varchar
+  Nationality varchar
+
+  Note: 'FullName is auto-calculated from FirstName and LastName'
+}
+
+Table AirplaneTicket {
+  ID int [pk, increment]
+  PassengerID int [not null]
+  FlightName varchar [not null]
+  Seat varchar
+  GateNumber varchar
+  FlightPrice decimal [not null]
+  TotalAmount decimal [not null]
+  Status varchar [default: 'Booked']
+
+
+}
+
+Table AirplaneTicketAddOnType {
+  Name varchar [pk, not null]
+  Description varchar
+}
+
+Table AirplaneTicketAddOnItem {
+  TicketID int [not null]
+  AddOnTypeName varchar [not null]
+  Amount decimal [default: 0]
+
+
+}
+
+Table AirportShop {
+  ShopNumber varchar [pk, not null]
+  ShopName varchar [not null]
+  TenantName varchar [not null]
+  TenantEmail varchar [not null]
+  ContractRentAmount decimal [not null]
+  ContractExpiryDate date [not null]
+  Area float [not null]
+  Status varchar [default: 'Available']
+
+  Note: 'ShopNumber and ShopName must be unique within an airport'
+}
+
+Table AirportShopRentPayment {
+  ID int [pk, increment]
+  ShopNumber varchar [not null]
+  PaymentDate date [not null]
+  Amount decimal [not null]
+  ReceiptNumber varchar [not null, unique]
+
+
+}
+
+Table GlobalConfiguration {
+  ID int [pk, increment]
+  DefaultRentAmount decimal
+  EnableRentReminders bool
+}
+
+Table AirplaneFlightCrew {
+  FlightName varchar [not null]
+  CrewMemberName varchar [not null]
+  Role varchar [not null]
+
+}
+
+Ref: AirplaneFlight.AirplaneName > Airplane.Name
+Ref: AirplaneFlight.SourceAirportName > Airport.Name
+Ref: AirplaneFlight.DestinationAirportName > Airport.Name
+Ref: AirplaneTicket.PassengerID > FlightPassenger.ID
+Ref: AirplaneTicket.FlightName > AirplaneFlight.Name
+Ref: AirplaneTicketAddOnItem.TicketID > AirplaneTicket.ID
+Ref: AirplaneTicketAddOnItem.AddOnTypeName > AirplaneTicketAddOnType.Name
+Ref: AirportShopRentPayment.ShopNumber > AirportShop.ShopNumber
+Ref: AirplaneFlightCrew.FlightName > AirplaneFlight.Name
