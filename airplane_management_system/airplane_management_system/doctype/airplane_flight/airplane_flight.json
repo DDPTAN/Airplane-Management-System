@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{airplane}-{MM)-{YYYY}-{#####}",
+ "autoname": "format:{airplane}-{MM}-{YYYY}-{#####}",
  "creation": "2024-06-21 10:02:53.084001",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -65,7 +65,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-06-21 10:13:28.374727",
+ "modified": "2024-06-21 11:01:43.682477",
  "modified_by": "Administrator",
  "module": "Airplane Management System",
  "name": "Airplane Flight",
