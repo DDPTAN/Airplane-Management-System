@@ -16,7 +16,8 @@
   "status",
   "amended_from",
   "flight_price",
-  "total_amount"
+  "total_amount",
+  "seat"
  ],
  "fields": [
   {
@@ -96,12 +97,18 @@
    "fieldtype": "Currency",
    "label": "Total Amount",
    "read_only": 1
+  },
+  {
+   "fieldname": "seat",
+   "fieldtype": "Data",
+   "label": "Seat",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-06-22 13:17:13.002067",
+ "modified": "2024-06-22 13:56:21.462310",
  "modified_by": "Administrator",
  "module": "Airplane Management System",
  "name": "Airplane Ticket",
