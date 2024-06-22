@@ -12,3 +12,9 @@ class AirplaneTicket(Document):
 		seat_number = random.randint(1,100)
 		seat_letter = random.choice(string.ascii_uppercase[:5])
 		self.seat = f"{seat_number}{seat_letter}"
+	
+	def before_submit(self):
+		if (self.status != "Boarded"):
+			frappe.throw("You can not submit ticket, ticket status must be boarded.")
+	
+
