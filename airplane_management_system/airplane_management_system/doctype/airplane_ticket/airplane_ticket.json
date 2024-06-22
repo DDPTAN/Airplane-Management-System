@@ -7,11 +7,9 @@
  "engine": "InnoDB",
  "field_order": [
   "pasanger",
-  "source_airport",
-  "destination_airport",
+  "flight",
   "source_airport_code",
   "destination_airport_code",
-  "flight",
   "departure_date",
   "departure_time",
   "duration_of_flight",
@@ -28,22 +26,6 @@
    "reqd": 1
   },
   {
-   "fieldname": "source_airport",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Source Airport",
-   "options": "Airport",
-   "reqd": 1
-  },
-  {
-   "fieldname": "destination_airport",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Destination Airport",
-   "options": "Airport",
-   "reqd": 1
-  },
-  {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
@@ -54,20 +36,18 @@
    "search_index": 1
   },
   {
-   "fetch_from": "source_airport.code",
+   "fetch_from": "flight.source_airport_code",
    "fieldname": "source_airport_code",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Source Airport Code",
-   "read_only": 1,
-   "reqd": 1
+   "read_only": 1
   },
   {
-   "fetch_from": "destination_airport.code",
+   "fetch_from": "flight.destination_airport_code",
    "fieldname": "destination_airport_code",
    "fieldtype": "Data",
-   "label": "Destination Airport Code",
-   "reqd": 1
+   "label": "Destination Airport Code"
   },
   {
    "fieldname": "flight",
@@ -107,7 +87,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-06-22 11:16:35.204226",
+ "modified": "2024-06-22 12:51:09.943140",
  "modified_by": "Administrator",
  "module": "Airplane Management System",
  "name": "Airplane Ticket",
