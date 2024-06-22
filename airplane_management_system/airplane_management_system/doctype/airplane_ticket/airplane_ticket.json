@@ -6,18 +6,28 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "passenger_details_section",
   "passenger",
-  "flight",
-  "source_airport_code",
-  "destination_airport_code",
-  "departure_date",
-  "departure_time",
-  "duration_of_flight",
   "status",
-  "amended_from",
+  "column_break_xmgr",
+  "flight",
+  "seat",
+  "airport_details_section",
+  "source_airport_code",
+  "column_break_hvxm",
+  "destination_airport_code",
+  "add_on_flight_section",
+  "add_ons",
+  "price_details_section",
   "flight_price",
+  "column_break_ufcu",
   "total_amount",
-  "seat"
+  "departure_details_section",
+  "departure_time",
+  "departure_date",
+  "column_break_nwpo",
+  "duration_of_flight",
+  "amended_from"
  ],
  "fields": [
   {
@@ -103,12 +113,59 @@
    "fieldtype": "Data",
    "label": "Seat",
    "reqd": 1
+  },
+  {
+   "fieldname": "column_break_xmgr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "passenger_details_section",
+   "fieldtype": "Section Break",
+   "label": "Passenger Details"
+  },
+  {
+   "fieldname": "airport_details_section",
+   "fieldtype": "Section Break",
+   "label": "Airport Details"
+  },
+  {
+   "fieldname": "column_break_hvxm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "price_details_section",
+   "fieldtype": "Section Break",
+   "label": "Price Details"
+  },
+  {
+   "fieldname": "column_break_ufcu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "departure_details_section",
+   "fieldtype": "Section Break",
+   "label": "Departure Details"
+  },
+  {
+   "fieldname": "column_break_nwpo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "add_on_flight_section",
+   "fieldtype": "Section Break",
+   "label": "Add On Flight"
+  },
+  {
+   "fieldname": "add_ons",
+   "fieldtype": "Table",
+   "label": "Add Ons",
+   "options": "Airplane Ticket Add-on Item"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-06-22 13:56:21.462310",
+ "modified": "2024-06-22 14:44:48.025393",
  "modified_by": "Administrator",
  "module": "Airplane Management System",
  "name": "Airplane Ticket",

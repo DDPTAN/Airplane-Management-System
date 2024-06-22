@@ -6,15 +6,22 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "airplane_details_section",
   "airplane",
-  "date_of_departure",
-  "time_of_departure",
-  "duration",
+  "column_break_bqvj",
+  "status",
+  "airport_details_section",
   "source_airport",
   "source_airport_code",
+  "column_break_xemx",
   "destination_airport",
   "destination_airport_code",
-  "status",
+  "departure_details_section",
+  "date_of_departure",
+  "duration",
+  "column_break_uayt",
+  "time_of_departure",
+  "amended_details_section",
   "amended_from"
  ],
  "fields": [
@@ -92,6 +99,38 @@
    "fieldtype": "Data",
    "label": "Destination Airport Code",
    "read_only": 1
+  },
+  {
+   "fieldname": "airplane_details_section",
+   "fieldtype": "Section Break",
+   "label": "Airplane Details"
+  },
+  {
+   "fieldname": "column_break_bqvj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "airport_details_section",
+   "fieldtype": "Section Break",
+   "label": "Airport Details"
+  },
+  {
+   "fieldname": "column_break_xemx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "departure_details_section",
+   "fieldtype": "Section Break",
+   "label": "Departure Details"
+  },
+  {
+   "fieldname": "column_break_uayt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "amended_details_section",
+   "fieldtype": "Section Break",
+   "label": "Amended Details"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -102,7 +141,7 @@
    "link_fieldname": "flight"
   }
  ],
- "modified": "2024-06-22 14:23:07.952397",
+ "modified": "2024-06-22 14:36:53.088395",
  "modified_by": "Administrator",
  "module": "Airplane Management System",
  "name": "Airplane Flight",
