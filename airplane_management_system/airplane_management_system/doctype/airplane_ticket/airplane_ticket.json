@@ -6,7 +6,7 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "pasanger",
+  "passenger",
   "flight",
   "source_airport_code",
   "destination_airport_code",
@@ -14,11 +14,13 @@
   "departure_time",
   "duration_of_flight",
   "status",
-  "amended_from"
+  "amended_from",
+  "flight_price",
+  "total_amount"
  ],
  "fields": [
   {
-   "fieldname": "pasanger",
+   "fieldname": "passenger",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Passenger",
@@ -82,12 +84,24 @@
    "label": "Status",
    "options": "Booked\nChecked-In\nBoarded",
    "reqd": 1
+  },
+  {
+   "fieldname": "flight_price",
+   "fieldtype": "Currency",
+   "label": "Flight Price",
+   "reqd": 1
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "label": "Total Amount",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-06-22 12:51:09.943140",
+ "modified": "2024-06-22 13:17:13.002067",
  "modified_by": "Administrator",
  "module": "Airplane Management System",
  "name": "Airplane Ticket",
