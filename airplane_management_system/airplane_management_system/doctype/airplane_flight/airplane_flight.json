@@ -7,11 +7,15 @@
  "engine": "InnoDB",
  "field_order": [
   "airplane",
-  "amended_from",
   "date_of_departure",
   "time_of_departure",
   "duration",
-  "status"
+  "source_airport",
+  "source_airport_code",
+  "destination_airport",
+  "destination_airport_code",
+  "status",
+  "amended_from"
  ],
  "fields": [
   {
@@ -60,12 +64,40 @@
    "label": "Status",
    "options": "Scheduled\nCompleted\nCancelled",
    "reqd": 1
+  },
+  {
+   "fieldname": "source_airport",
+   "fieldtype": "Link",
+   "label": "Source Airport ",
+   "options": "Airport",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "source_airport.code",
+   "fieldname": "source_airport_code",
+   "fieldtype": "Data",
+   "label": "Source Airport Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "destination_airport",
+   "fieldtype": "Link",
+   "label": "Destination Airport",
+   "options": "Airport",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "destination_airport.code",
+   "fieldname": "destination_airport_code",
+   "fieldtype": "Data",
+   "label": "Destination Airport Code",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-06-21 11:01:43.682477",
+ "modified": "2024-06-22 12:47:17.303646",
  "modified_by": "Administrator",
  "module": "Airplane Management System",
  "name": "Airplane Flight",
