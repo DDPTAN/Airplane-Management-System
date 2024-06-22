@@ -96,8 +96,13 @@
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
- "links": [],
- "modified": "2024-06-22 12:47:17.303646",
+ "links": [
+  {
+   "link_doctype": "Airplane Ticket",
+   "link_fieldname": "flight"
+  }
+ ],
+ "modified": "2024-06-22 14:23:07.952397",
  "modified_by": "Administrator",
  "module": "Airplane Management System",
  "name": "Airplane Flight",
