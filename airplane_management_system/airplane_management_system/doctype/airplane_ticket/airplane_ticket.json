@@ -9,6 +9,7 @@
   "passenger_details_section",
   "passenger",
   "status",
+  "class",
   "column_break_xmgr",
   "flight",
   "seat",
@@ -160,12 +161,19 @@
    "fieldtype": "Table",
    "label": "Add Ons",
    "options": "Airplane Ticket Add-on Item"
+  },
+  {
+   "fieldname": "class",
+   "fieldtype": "Select",
+   "label": "Class",
+   "options": "Economy\nBusiness Class\nFirst Class",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-06-22 14:44:48.025393",
+ "modified": "2024-06-25 14:40:50.905094",
  "modified_by": "Administrator",
  "module": "Airplane Management System",
  "name": "Airplane Ticket",
