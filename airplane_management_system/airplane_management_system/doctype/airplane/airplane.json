@@ -6,10 +6,11 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "image",
   "model",
   "airline",
   "capacity",
-  "image"
+  "capacity_luggage"
  ],
  "fields": [
   {
@@ -31,7 +32,7 @@
    "fieldname": "capacity",
    "fieldtype": "Int",
    "in_list_view": 1,
-   "label": "Capacity",
+   "label": "Capacity Seat",
    "non_negative": 1,
    "reqd": 1
   },
@@ -40,11 +41,17 @@
    "fieldtype": "Attach Image",
    "label": "Image",
    "reqd": 1
+  },
+  {
+   "fieldname": "capacity_luggage",
+   "fieldtype": "Int",
+   "label": "Capacity Luggage (Kg)",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-25 14:26:19.161913",
+ "modified": "2024-06-26 10:51:02.247769",
  "modified_by": "Administrator",
  "module": "Airplane Management System",
  "name": "Airplane",

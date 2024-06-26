@@ -6,8 +6,9 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "passenger_details_section",
+  "section_break_ghrc",
   "passenger",
+  "passenger_details_section",
   "status",
   "class",
   "column_break_xmgr",
@@ -26,19 +27,12 @@
   "departure_details_section",
   "departure_time",
   "departure_date",
+  "gate_number",
   "column_break_nwpo",
   "duration_of_flight",
   "amended_from"
  ],
  "fields": [
-  {
-   "fieldname": "passenger",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Passenger",
-   "options": "Flight Passenger",
-   "reqd": 1
-  },
   {
    "fieldname": "amended_from",
    "fieldtype": "Link",
@@ -98,6 +92,7 @@
    "reqd": 1
   },
   {
+   "fetch_from": "flight.flight_price",
    "fieldname": "flight_price",
    "fieldtype": "Currency",
    "label": "Flight Price",
@@ -107,7 +102,8 @@
    "fieldname": "total_amount",
    "fieldtype": "Currency",
    "label": "Total Amount",
-   "read_only": 1
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fieldname": "seat",
@@ -168,12 +164,31 @@
    "label": "Class",
    "options": "Economy\nBusiness Class\nFirst Class",
    "reqd": 1
+  },
+  {
+   "fetch_from": "flight.gate_number",
+   "fieldname": "gate_number",
+   "fieldtype": "Data",
+   "label": "Gate Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_ghrc",
+   "fieldtype": "Section Break",
+   "label": "Passenger Information"
+  },
+  {
+   "fieldname": "passenger",
+   "fieldtype": "Table",
+   "label": "Passenger",
+   "options": "Flight Passenger",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-06-25 14:40:50.905094",
+ "modified": "2024-06-26 11:21:46.114111",
  "modified_by": "Administrator",
  "module": "Airplane Management System",
  "name": "Airplane Ticket",
@@ -193,7 +208,6 @@
    "write": 1
   }
  ],
- "quick_entry": 1,
  "sort_field": "creation",
  "sort_order": "DESC",
  "states": [

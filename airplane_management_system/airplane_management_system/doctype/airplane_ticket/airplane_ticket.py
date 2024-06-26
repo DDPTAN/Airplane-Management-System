@@ -2,24 +2,20 @@
 # For license information, please see license.txt
 
 import frappe
-import random
-import string
 from frappe.model.document import Document
 
 
 class AirplaneTicket(Document):
-	def generate_seat(self):
-		seat_number = random.randint(1,100)
-		seat_letter = random.choice(string.ascii_uppercase[:5])
-		self.seat = f"{seat_number}{seat_letter}"
+	# def generate_seat(self):
+	# 	seat_number = random.randint(1,100)
+	# 	seat_letter = random.choice(string.ascii_uppercase[:5])
+	# 	self.seat = f"{seat_number}{seat_letter}"
 	
 	def before_submit(self):
 		if (self.status != "Boarded"):
 			frappe.throw("You can not submit ticket, ticket status must be boarded.")
 	
 	def before_save(self):
-		if self.seat == None:
-			self.generate_seat()
 		self.cal_total_amount()
 	
 	def validate(self):
