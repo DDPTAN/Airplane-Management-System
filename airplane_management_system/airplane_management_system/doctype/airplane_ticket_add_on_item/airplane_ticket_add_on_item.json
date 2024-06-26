@@ -20,15 +20,17 @@
   },
   {
    "default": "0",
+   "fetch_from": "item.price",
    "fieldname": "amount",
    "fieldtype": "Currency",
-   "label": "Amount"
+   "label": "Amount",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-06-21 00:58:47.364355",
+ "modified": "2024-06-26 10:38:14.529585",
  "modified_by": "Administrator",
  "module": "Airplane Management System",
  "name": "Airplane Ticket Add-on Item",
