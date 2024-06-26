@@ -176,6 +176,7 @@
   {
    "fieldname": "booking_ticket_id",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Booking Ticket ID",
    "read_only": 1
   },
@@ -200,6 +201,7 @@
    "fetch_from": "flight.flight_class",
    "fieldname": "flight_class",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Flight Class",
    "options": "Airplane Flight",
    "read_only": 1
@@ -212,7 +214,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-06-27 00:00:49.653654",
+ "modified": "2024-06-27 00:19:46.840333",
  "modified_by": "Administrator",
  "module": "Airplane Management System",
  "name": "Airplane Ticket",

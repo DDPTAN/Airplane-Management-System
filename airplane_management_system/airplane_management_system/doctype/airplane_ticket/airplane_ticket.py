@@ -27,6 +27,8 @@ class AirplaneTicket(Document):
             self.flight_price *= 2
         elif self.flight_class == "First Class":
             self.flight_price *= 5
+        
+        self.booking_ticket_id = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
 
     def validate(self):
         unique_data = set()
