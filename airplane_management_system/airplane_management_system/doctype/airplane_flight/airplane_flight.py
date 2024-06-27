@@ -17,10 +17,8 @@ class AirplaneFlight(WebsiteGenerator):
 		self.route = f"flight/{date_of_departure_str}-{unique_flight_str}"
 		self.is_published = 1
 
-	
 	@frappe.whitelist()
 	def set_flight_status(self):
 		flight = frappe.get_doc("Airplane Flight",)
 		flight.status = "Completed"
 		flight.save()
-

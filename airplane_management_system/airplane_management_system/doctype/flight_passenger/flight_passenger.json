@@ -10,7 +10,8 @@
   "last_name",
   "date_of_birth",
   "full_name",
-  "seat_number"
+  "seat_number",
+  "booking_id"
  ],
  "fields": [
   {
@@ -44,12 +45,17 @@
    "in_list_view": 1,
    "label": "Seat Number",
    "reqd": 1
+  },
+  {
+   "fieldname": "booking_id",
+   "fieldtype": "Data",
+   "label": "Booking ID"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-06-26 23:55:21.306680",
+ "modified": "2024-06-27 21:43:11.710159",
  "modified_by": "Administrator",
  "module": "Airplane Management System",
  "name": "Flight Passenger",

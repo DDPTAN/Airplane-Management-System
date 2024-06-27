@@ -1,45 +1,81 @@
 frappe.ui.form.on("Airplane Ticket", {
-    flight_price(frm) {
-        calculate_total_amount(frm);
+    flight_price: calculate_total_amount,
+    flight: function(frm) {
+        if (frm.doc.flight) {
+            fetch_remaining_seat(frm);
+        }
     },
-    refresh(frm) {
-        calculate_total_amount(frm);
+    seat_available: function(frm) {
+        if (frm.doc.seat_available <= 0) {
+            frappe.msgprint({
+                title: __('Flight Fully Booked'),
+                indicator: 'red',
+                message: __('This flight is already fully booked.')
+            });
+        } else {
+            calculate_total_amount(frm);
+        }
     }
 });
 
 frappe.ui.form.on("Airplane Ticket Add-on Item", {
-    amount(frm) {
-        calculate_total_amount(frm);
-    },
-    quantity(frm) {
-        calculate_total_amount(frm)
-    },
-    add_ons_remove(frm) {
-       calculate_total_amount(frm)
-    }
+    amount: calculate_total_amount,
+    quantity: calculate_total_amount,
+    add_ons_remove: calculate_total_amount
 });
 
 frappe.ui.form.on("Flight Passenger", {
-    flight_passenger_add(frm) {
-        calculate_total_amount(frm);
-    },
-    flight_passenger_remove(frm) {
-        calculate_total_amount(frm);
-    }
-})
+    flight_passenger_add: calculate_total_amount,
+    flight_passenger_remove: calculate_total_amount
+});
+
+function fetch_remaining_seat(frm) {
+    frappe.call({
+        method: "airplane_management_system.airplane_management_system.doctype.airplane_ticket.ticket.get_remaining_seat_capacity",
+        args: {
+            flight_id: frm.doc.flight
+        },
+        callback: function(r) {
+            let remaining_seat = r.message || 0;
+            frm.set_value('seat_available', remaining_seat).then(() => {
+                calculate_total_amount(frm);
+            });
+        },
+        error: function(r) {
+            console.log(r);
+        }
+    });
+}
 
 function calculate_total_amount(frm) {
-    let total_amount = frm.doc.flight_price;
+    let remaining_seat = frm.doc.seat_available;
 
-    let passenger_count = frm.doc.flight_passenger ? frm.doc.flight_passenger.length : 0;
+    if (!Array.isArray(frm.doc.flight_passenger)) {
+        frm.doc.flight_passenger = [];
+    }
+
+    let passenger_count = frm.doc.flight_passenger.length;
     passenger_count = passenger_count < 1 ? 1 : passenger_count;
 
+    if (passenger_count > remaining_seat) {
+        frappe.msgprint({
+            title: __('Flight is full'),
+            indicator: 'red',
+            message: __('Passenger count exceeds the remaining seats.')
+        });
+        return;
+    }
+
+    let total_amount = frm.doc.flight_price || 0;
+
     if (passenger_count > 0) {
-        total_amount *= passenger_count
+        total_amount *= passenger_count;
     }
     
-    for (let item of frm.doc.add_ons) {
-        total_amount += (item.amount * item.quantity);
+    if (Array.isArray(frm.doc.add_ons)) {
+        for (let item of frm.doc.add_ons) {
+            total_amount += (item.amount * item.quantity);
+        }
     }
 
     frm.set_value("total_amount", total_amount);

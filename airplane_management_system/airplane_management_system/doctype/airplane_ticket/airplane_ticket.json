@@ -7,15 +7,16 @@
  "engine": "InnoDB",
  "field_order": [
   "booking_ticket_id_section",
-  "booking_ticket_id",
-  "passenger_information_section",
-  "flight_passenger",
+  "ticket_id",
   "passenger_details_section",
   "column_break_xmgr",
   "flight",
   "flight_class",
+  "flight_price",
   "column_break_fjfc",
   "status",
+  "max_seat_capacity",
+  "seat_available",
   "airport_details_section",
   "source_airport_code",
   "column_break_hvxm",
@@ -26,11 +27,11 @@
   "column_break_nwpo",
   "duration_of_flight",
   "gate_number",
+  "passenger_information_section",
+  "flight_passenger",
   "add_on_flight_section",
   "add_ons",
-  "price_details_section",
-  "flight_price",
-  "column_break_ufcu",
+  "total_purchase_section",
   "total_amount",
   "amended_information_section",
   "amended_from"
@@ -39,6 +40,9 @@
   {
    "fieldname": "amended_from",
    "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
    "label": "Amended From",
    "no_copy": 1,
    "options": "Airplane Ticket",
@@ -91,6 +95,7 @@
    "reqd": 1
   },
   {
+   "depends_on": "flight",
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
@@ -110,7 +115,9 @@
    "fieldname": "total_amount",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Total Amount",
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Total amount",
    "read_only": 1,
    "reqd": 1
   },
@@ -121,9 +128,10 @@
   {
    "fieldname": "passenger_details_section",
    "fieldtype": "Section Break",
-   "label": "Passenger Details"
+   "label": "Flight Details"
   },
   {
+   "depends_on": "flight",
    "fieldname": "airport_details_section",
    "fieldtype": "Section Break",
    "label": "Airport Details"
@@ -133,15 +141,7 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "price_details_section",
-   "fieldtype": "Section Break",
-   "label": "Price Details"
-  },
-  {
-   "fieldname": "column_break_ufcu",
-   "fieldtype": "Column Break"
-  },
-  {
+   "depends_on": "flight",
    "fieldname": "departure_details_section",
    "fieldtype": "Section Break",
    "label": "Departure Details"
@@ -174,16 +174,9 @@
    "label": "Passenger Information"
   },
   {
-   "fieldname": "booking_ticket_id",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Booking Ticket ID",
-   "read_only": 1
-  },
-  {
    "fieldname": "booking_ticket_id_section",
    "fieldtype": "Section Break",
-   "label": "Booking Ticket ID"
+   "label": "Ticket ID"
   },
   {
    "fieldname": "flight_passenger",
@@ -209,12 +202,41 @@
   {
    "fieldname": "column_break_fjfc",
    "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "depends_on": "flight",
+   "fieldname": "seat_available",
+   "fieldtype": "Int",
+   "is_virtual": 1,
+   "label": "Avaliable Seat Remaining"
+  },
+  {
+   "depends_on": "flight",
+   "fieldname": "total_purchase_section",
+   "fieldtype": "Section Break",
+   "label": "Total Purchase"
+  },
+  {
+   "depends_on": "flight",
+   "fetch_from": "flight.capacity_seat",
+   "fieldname": "max_seat_capacity",
+   "fieldtype": "Int",
+   "label": "Max Seat Capacity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ticket_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Ticket ID",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-06-27 00:19:46.840333",
+ "modified": "2024-06-27 21:42:11.809171",
  "modified_by": "Administrator",
  "module": "Airplane Management System",
  "name": "Airplane Ticket",

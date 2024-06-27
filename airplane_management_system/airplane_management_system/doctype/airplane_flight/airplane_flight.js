@@ -2,7 +2,7 @@
 // For license information, please see license.txt
 
 // frappe.ui.form.on("Airplane Flight", {
-// 	refresh(frm) {
-
-// 	},
+// 	capacity_seat(frm) {
+//         frm.set_value("seats_remaining", frm.doc.capacity_seat);
+// 	}
 // });
