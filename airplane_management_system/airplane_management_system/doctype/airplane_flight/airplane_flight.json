@@ -9,12 +9,12 @@
  "field_order": [
   "airplane_details_section",
   "airplane",
+  "flight_class",
   "capacity_seat",
-  "flight_price",
   "column_break_bqvj",
   "status",
+  "flight_price",
   "capacity_luggage",
-  "flight_class",
   "airport_details_section",
   "source_airport",
   "source_airport_code",
@@ -168,14 +168,15 @@
    "fetch_from": "airplane.capacity",
    "fieldname": "capacity_seat",
    "fieldtype": "Int",
-   "label": "Capacity Seat",
+   "label": "Seat Capacity",
+   "read_only": 1,
    "reqd": 1
   },
   {
    "fetch_from": "airplane.capacity_luggage",
    "fieldname": "capacity_luggage",
    "fieldtype": "Int",
-   "label": "Capacity Luggage",
+   "label": "Max Luggage Capacity",
    "reqd": 1
   },
   {
@@ -196,7 +197,7 @@
    "link_fieldname": "flight"
   }
  ],
- "modified": "2024-06-26 23:36:25.155071",
+ "modified": "2024-06-27 16:35:19.699786",
  "modified_by": "Administrator",
  "module": "Airplane Management System",
  "name": "Airplane Flight",
@@ -217,7 +218,6 @@
    "write": 1
   }
  ],
- "quick_entry": 1,
  "route": "flights",
  "sort_field": "creation",
  "sort_order": "DESC",

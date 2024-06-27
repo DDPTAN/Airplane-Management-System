@@ -21,6 +21,14 @@ class AirplaneTicket(Document):
         for passenger in self.flight_passenger:
             passenger.generate_full_name()
 
+        for passenger in self.flight_passenger:
+            # Example: Combine first name and last name into full name
+            full_name = f"{passenger.first_name} {passenger.last_name}"
+            passenger.full_name = full_name.strip()  # Strip to remove any leading/trailing spaces
+
+            # Example: Generate random code for each passenger
+            passenger.booking_id = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+
     def validate(self):
         unique_data = set()
         filtered_res = []
