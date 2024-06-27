@@ -4,6 +4,11 @@ frappe.ui.form.on("Airplane Ticket", {
     },
     refresh(frm) {
         calculate_total_amount(frm);
+    },
+    flight_passenger: function(frm, cdt, cdn) {
+        let row = locals[cdt][cdn];
+        let full_name = `${row.first_name} ${row.last_name}`.trim();
+        frappe.model.set_value(cdt, cdn, 'full_name', full_name);
     }
 });
 
