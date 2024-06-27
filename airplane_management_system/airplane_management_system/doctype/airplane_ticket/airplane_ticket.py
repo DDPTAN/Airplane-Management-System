@@ -18,6 +18,8 @@ class AirplaneTicket(Document):
         self.status = "Boarded"
         
         self.booking_ticket_id = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+        for passenger in self.flight_passenger:
+            passenger.generate_full_name()
 
         for passenger in self.flight_passenger:
             # Example: Combine first name and last name into full name

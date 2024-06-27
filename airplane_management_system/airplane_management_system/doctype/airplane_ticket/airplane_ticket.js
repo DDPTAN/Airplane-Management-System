@@ -1,11 +1,7 @@
 frappe.ui.form.on("Airplane Ticket", {
     flight_price: calculate_total_amount,
-    flight: function(frm) {
-        if (frm.doc.flight) {
-            fetch_remaining_seat(frm);
-        }
-    },
-    seat_available: function(frm) {
+    flight: fetch_remaining_seat,
+    seat_available(frm) {
         if (frm.doc.seat_available <= 0) {
             frappe.msgprint({
                 title: __('Flight Fully Booked'),
@@ -30,34 +26,35 @@ frappe.ui.form.on("Flight Passenger", {
 });
 
 function fetch_remaining_seat(frm) {
-    frappe.call({
-        method: "airplane_management_system.airplane_management_system.doctype.airplane_ticket.ticket.get_remaining_seat_capacity",
-        args: {
-            flight_id: frm.doc.flight
-        },
-        callback: function(r) {
-            let remaining_seat = r.message || 0;
-            frm.set_value('seat_available', remaining_seat).then(() => {
-                calculate_total_amount(frm);
-            });
-        },
-        error: function(r) {
-            console.log(r);
-        }
-    });
+    if (frm.doc.flight) {
+        frappe.call({
+            method: "airplane_management_system.airplane_management_system.doctype.airplane_ticket.ticket.get_remaining_seat_capacity",
+            args: {
+                flight_id: frm.doc.flight
+            },
+            callback: function(r) {
+                let remaining_seat = r.message || 0;
+                frm.set_value('seat_available', remaining_seat);
+            },
+            error: function(r) {
+                console.log(r);
+            }
+        });
+    }
 }
 
 function calculate_total_amount(frm) {
     let remaining_seat = frm.doc.seat_available;
 
+    // Check if flight_passenger exists and is an array
     if (!Array.isArray(frm.doc.flight_passenger)) {
         frm.doc.flight_passenger = [];
     }
 
     let passenger_count = frm.doc.flight_passenger.length;
-    passenger_count = passenger_count < 1 ? 1 : passenger_count;
 
-    if (passenger_count > remaining_seat) {
+    // Only perform the check if passengers are added
+    if (passenger_count > 0 && passenger_count > remaining_seat) {
         frappe.msgprint({
             title: __('Flight is full'),
             indicator: 'red',
