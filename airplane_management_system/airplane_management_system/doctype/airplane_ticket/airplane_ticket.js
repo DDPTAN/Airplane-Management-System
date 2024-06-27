@@ -31,7 +31,8 @@ frappe.ui.form.on("Flight Passenger", {
 function calculate_total_amount(frm) {
     let total_amount = frm.doc.flight_price;
 
-    let passenger_count = frm.doc.flight_passenger.length;
+    let passenger_count = frm.doc.flight_passenger ? frm.doc.flight_passenger.length : 0;
+    passenger_count = passenger_count < 1 ? 1 : passenger_count;
 
     if (passenger_count > 0) {
         total_amount *= passenger_count
