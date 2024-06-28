@@ -49,13 +49,14 @@
   {
    "fieldname": "booking_id",
    "fieldtype": "Data",
-   "label": "Booking ID"
+   "label": "Booking ID",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-06-27 21:43:11.710159",
+ "modified": "2024-06-28 01:59:19.719218",
  "modified_by": "Administrator",
  "module": "Airplane Management System",
  "name": "Flight Passenger",
