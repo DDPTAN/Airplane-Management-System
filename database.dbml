@@ -14,8 +14,6 @@ Project Airplane_Management_System {
     - `FlightPassenger`: Stores passenger details for each flight.
     - `AirplaneTicket`: Represents tickets booked by passengers.
     - `AirplaneTicketAddOnType`: Tracks additional services booked along with tickets.
-    - `GlobalConfiguration`: Stores global configurations for the system.
-    - `AirplaneFlightCrew`: Records crew members assigned to flights.
   '''
 }
 
@@ -24,6 +22,7 @@ Table Airline {
   FoundingYear int [not null, note: 'Non-negative']
   CustomerCareNumber varchar [not null]
   Headquarters varchar [not null]
+  Website varchar
 }
 
 Table Airport {
@@ -35,59 +34,82 @@ Table Airport {
 
 Table Airplane {
   Name varchar [pk, not null]
-  AirlineName varchar [not null]
+  Image varchar [not null]
   Model varchar [not null]
+  AirlineName varchar [not null]
   CapacitySeat int [not null]
-  Capacityluggage int [not null]
+  CapacityLuggage int [not null]
 }
 
 Table AirplaneFlight {
   Name varchar [pk, not null]
   AirplaneName varchar [not null]
+  SourceAirport varchar [not null]
+  SourceAirportCode varchar 
+  DestinationAirport varchar [not null]
+  DestinationAirportCode varchar
   DateOfDeparture date [not null]
   TimeOfDeparture time [not null]
-  Duration interval [not null]
-  SourceAirportName varchar [not null]
-  DestinationAirportName varchar [not null]
   GateNumber varchar [not null]
+  Duration interval [not null]
   FlightPrice decimal [not null]
   CapacitySeat int [not null]
   Capacityluggage int [not null]
+  MaxLuggageCapacity int [not null]
   Status varchar [default: 'Scheduled']
+  AmmendedFrom varchar
+  IsPublished bool
 }
 
 Table AirplaneTicket {
-  ID varchar [pk, increment]
-  PassengerName array [not null]
+  Name varchar [pk, increment]
+  TicketID varchar 
   FlightName varchar [not null]
+  FlightClass varchar
+  FlightPassenger table [not null]
+  MaxCapacitySeat int 
+  AvailableSeatRemaining int 
   Seat varchar
   AddOnItem varchar [not null]
   DateOfDeparture date [not null]
   TimeOfDeparture time [not null]
   Duration interval [not null]
-  SourceAirportName varchar [not null]
-  DestinationAirportName varchar [not null]
+  SourceAirportCode varchar [not null]
+  DestinationAirportCode varchar [not null]
   GateNumber varchar
+  AddOns table
   FlightPrice decimal 
   TotalAmount decimal [not null]
   Status varchar [default: 'Booked']
+  AmmendedFrom varchar 
 }
 
 Table AirplaneTicketAddOnType {
   Name varchar [pk, not null]
   Description varchar
+  Price decimal [not null]
 }
 
 Table AirplaneTicketAddOnItem {
   AddOnTypeName varchar [not null]
-  Amount decimal [default: 0]
+  Amount decimal [not null]
+  Quantity int [not null]
+}
 
+Table FlightPassenger {
+  FullName varchar [pk,not null]
+  FirstName varchar [not null]
+  LastName varchar
+  DateOfBirth int [not null]
+  SeatNumber int [not null]
+  BookingID varchar
 }
 
 Ref: Airline.Name > Airplane.AirlineName
 Ref: AirplaneFlight.AirplaneName > Airplane.Name
-Ref: AirplaneFlight.SourceAirportName > Airport.Name
-Ref: AirplaneFlight.DestinationAirportName > Airport.Name
+Ref: AirplaneFlight.SourceAirportCode > Airport.Code
+Ref: AirplaneFlight.DestinationAirportCode > Airport.Code
 Ref: AirplaneTicket.FlightName > AirplaneFlight.Name
-Ref: AirplaneTicketAddOnItem.TicketID > AirplaneTicket.ID
+Ref: AirplaneTicketAddOnItem.AddOnTypeName > AirplaneTicket.AddOns
 Ref: AirplaneTicketAddOnItem.AddOnTypeName > AirplaneTicketAddOnType.Name
+Ref: AirplaneTicket.FlightPassenger > FlightPassenger.FullName
