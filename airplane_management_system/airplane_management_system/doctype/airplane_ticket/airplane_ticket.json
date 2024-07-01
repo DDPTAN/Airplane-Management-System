@@ -55,7 +55,6 @@
    "fieldname": "source_airport_code",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "is_virtual": 1,
    "label": "Source Airport Code",
    "read_only": 1
   },
@@ -64,7 +63,6 @@
    "fieldname": "destination_airport_code",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "is_virtual": 1,
    "label": "Destination Airport Code",
    "read_only": 1
   },
@@ -79,7 +77,6 @@
    "fetch_from": "flight.date_of_departure",
    "fieldname": "departure_date",
    "fieldtype": "Date",
-   "is_virtual": 1,
    "label": "Departure Date",
    "read_only": 1
   },
@@ -87,7 +84,6 @@
    "fetch_from": "flight.time_of_departure",
    "fieldname": "departure_time",
    "fieldtype": "Time",
-   "is_virtual": 1,
    "label": "Departure Time",
    "read_only": 1
   },
@@ -95,7 +91,6 @@
    "fetch_from": "flight.duration",
    "fieldname": "duration_of_flight",
    "fieldtype": "Duration",
-   "is_virtual": 1,
    "label": "Duration Of Flight",
    "read_only": 1
   },
@@ -103,7 +98,6 @@
    "depends_on": "flight",
    "fieldname": "status",
    "fieldtype": "Select",
-   "is_virtual": 1,
    "label": "Status",
    "options": "Booked\nChecked-In\nBoarded"
   },
@@ -112,9 +106,9 @@
    "fieldname": "flight_price",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "is_virtual": 1,
    "label": "Flight Price",
-   "read_only": 1
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fieldname": "total_amount",
@@ -170,7 +164,6 @@
    "fetch_from": "flight.gate_number",
    "fieldname": "gate_number",
    "fieldtype": "Data",
-   "is_virtual": 1,
    "label": "Gate Number",
    "read_only": 1
   },
@@ -201,7 +194,6 @@
    "fieldname": "flight_class",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "is_virtual": 1,
    "label": "Flight Class",
    "options": "Airplane Flight",
    "read_only": 1
@@ -229,7 +221,6 @@
    "fetch_from": "flight.capacity_seat",
    "fieldname": "max_seat_capacity",
    "fieldtype": "Int",
-   "is_virtual": 1,
    "label": "Max Seat Capacity",
    "read_only": 1
   },
@@ -244,7 +235,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-07-01 07:37:57.572668",
+ "modified": "2024-06-28 01:56:55.463154",
  "modified_by": "Administrator",
  "module": "Airplane Management System",
  "name": "Airplane Ticket",
